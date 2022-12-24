@@ -59,5 +59,5 @@ pipeline {
                          color: 'danger',
                          message: "${currentBuild.fullDisplayName} FAILED"
             }
-    
+    }   
 }
