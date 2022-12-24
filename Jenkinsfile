@@ -6,6 +6,11 @@ pipeline {
                 git url: 'https://github.com/jamesgstone/devops_tsk'
             }
     }
+    stage('Prune agent data')  {
+                steps {			
+                           sh 'sudo docker system prune -a -f'
+                      }
+    }
     stage('Build Docker Images') {
       steps {
           sh 'sudo docker-compose build'
@@ -35,4 +40,24 @@ pipeline {
       }
     }
   }
+  
+    post {
+	    always {
+                         sh 'sudo docker-compose down --remove-orphans -v'
+                         sh 'echo "removed all containers and images"'
+			 deleteDir()
+            }
+
+            success {    
+                         slackSend channel: '#succeeded-build',
+                         color: 'good',
+                         message: "${currentBuild.fullDisplayName} completed successfully."
+            }       
+                            
+            failure {
+                         slackSend channel: '#devops-alerts',
+                         color: 'danger',
+                         message: "${currentBuild.fullDisplayName} FAILED"
+            }
+    
 }

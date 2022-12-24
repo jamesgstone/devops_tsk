@@ -7,3 +7,6 @@ This application defines a single route, /containers, that returns a list of the
 To use this application, you will need to have the Docker Python module installed.
 # unit test 
 sends a simple http request
+
+# post
+added success/failure slack notifications - * Slack Notification plugin is necessary and credentials and channels must be configured 
