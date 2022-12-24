@@ -6,15 +6,19 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'my-github-credentials', url: 'https://github.com/my-repo.git']]])
       }
     }
-    stage('Build Docker Image') {
+    stage('Build Docker Images') {
       steps {
-        sh 'docker build -t my-app-image .'
-      }
+          sh 'sudo docker-compose build'
+     }
     }
     stage('Push Docker Image to Docker Hub') {
       steps {
         withDockerRegistry([credentialsId: 'my-docker-hub-credentials', url: 'https://index.docker.io/v1/']) {
-          sh 'docker push my-image'
+           sh '''
+				      docker push my-app-image
+              docker push nginx_srv
+			    '''
+			 
         }
       }
     }
