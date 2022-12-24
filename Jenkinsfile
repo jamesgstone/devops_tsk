@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'my-github-credentials', url: 'https://github.com/my-repo.git']]])
-      }
+                git url: 'https://github.com/jamesgstone/devops_tsk'
+            }
     }
     stage('Build Docker Images') {
       steps {
