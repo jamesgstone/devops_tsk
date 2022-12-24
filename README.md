@@ -9,4 +9,4 @@ To use this application, you will need to have the Docker Python module installe
 sends a simple http request
 
 # post
-added success/failure slack notifications - * Slack Notification plugin is necessary and credentials and channels must be configured 
+added success/failure slack notifications - * Slack Notification plugin is necessary and credentials + channels must be configured 
