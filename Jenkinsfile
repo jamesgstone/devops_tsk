@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t my-image .'
+        sh 'docker build -t my-app-image .'
       }
     }
     stage('Push Docker Image to Docker Hub') {

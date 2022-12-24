@@ -1,0 +1,12 @@
+services:   
+  app:
+    build: ./app
+    container_name: my-app-container
+    image: "my-app-image"
+  
+  nginx: 
+    build: ./nginx-server
+    image: "nginx_srv"
+    container_name: nginx-server
+    ports: 
+      - "80:80"
